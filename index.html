@@ -26,7 +26,7 @@
   <script>
     // работает
 
-    var icon_source = "https://icdn.lenta.ru/images/2021/04/27/16/20210427163138131/square_320_c09ebae17387b7d6eeb9fa0d42afe5ee.jpg";
+    var icon_source = "one.png";
     var links = [
       { source: "Samsung", target: "Amb network", icon: icon_source },
       { source: "Motorola", target: "Amb network", icon: icon_source },
@@ -77,30 +77,30 @@
 
     //
 
-    node.append("circle")
-      .attr("r", 1);
+    // node.append("circle")
+    //   .attr("r", 1);
 
-    node.append("image")
-      .attr("xlink:href", function (d) { return d.icon; })
-      .attr("x", "-32px")
-      .attr("y", "-32px")
-      .attr("width", "64px")
-      .attr("height", "64px");
+    // node.append("image")
+    //   .attr("xlink:href", function (d) { return d.icon; })
+    //   .attr("x", "-32px")
+    //   .attr("y", "-32px")
+    //   .attr("width", "64px")
+    //   .attr("height", "64px");
 
-    node.append("a")
-      .attr("xlink:href", function (d) { return "https://vk.com/theharald" })
-      .append("circle")
-      .attr("cx", 0)
-      .attr("cy", 0)
-      .attr("r", 20)
-      .style("fill", "blue")
-      .style("opacity", 0.0);
+    // node.append("a")
+    //   .attr("xlink:href", function (d) { return "https://vk.com/theharald" })
+    //   .append("circle")
+    //   .attr("cx", 0)
+    //   .attr("cy", 0)
+    //   .attr("r", 20)
+    //   .style("fill", "blue")
+    //   .style("opacity", 0.0);
 
-    node.append("text")
-      .attr("x", -50)
-      .attr("y", -70)
-      .attr("dy", "30")
-      .text(function (d) { return d.name; });
+    // node.append("text")
+    //   .attr("x", -50)
+    //   .attr("y", -70)
+    //   .attr("dy", "30")
+    //   .text(function (d) { return d.name; });
 
     function tick() {
       link
