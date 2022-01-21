@@ -4,11 +4,25 @@ var width = 900,
 var nodeSize = 16
 
 
+// var links = []
+// var nodes = {}
+
+
+// fetch('data.json')
+//     .then(response => response.json())
+//     .then(data => {
+//         console.log('data', data)
+//         links = data.links
+//         nodes = data.nodes
+//         console.log(links)
+//     })
+
+
 var links = [
-    { source: 'anna', target: 'huawei' },
-    { source: 'huawei', target: 'egor' },
+    { source: 'anna', target: 'rtuitlab' },
+    { source: 'rtuitlab', target: 'egor' },
     { source: 'egor', target: 'dima' },
-    { source: 'huawei', target: 'andrew' },
+    { source: 'rtuitlab', target: 'andrew' },
     { source: 'egor', target: 'ivan' }
 ]
 
@@ -16,8 +30,8 @@ var nodes = {
     andrew: { name: 'Андрей Петров', icon: './images/one1.png', url: 'https://www.google.ru/' },
     anna: { name: 'Анна Иванова', icon: './images/one2.png', url: 'https://www.google.ru/' },
     dima: { name: 'Дмитрий Малов', icon: './images/one3.png', url: 'https://www.google.ru/' },
-    egor: { name: 'Егор Смиронв', icon: './images/one4.png', url: 'https://www.google.ru/' },
-    huawei: { name: 'Huawei', icon: './images/one5.png', url: 'https://www.google.ru/' },
+    egor: { name: 'Егор Смирнов', icon: './images/one4.png', url: 'https://www.google.ru/' },
+    rtuitlab: { name: 'RTU IT Lab', icon: './images/logo.png', url: 'https://rtuitlab.dev/' },
     ivan: { name: 'Иван Иванов', icon: './images/one6.png', url: 'https://www.google.ru/' },
 }
 
