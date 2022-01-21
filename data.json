@@ -1,23 +1,23 @@
 {
     "links": [
         {
-            " source": "anna",
+            "source": "anna",
             "target": "rtuitlab"
         },
         {
-            " source": "rtuitlab",
+            "source": "rtuitlab",
             "target": "egor"
         },
         {
-            " source": "egor",
+            "source": "egor",
             "target": "dima"
         },
         {
-            " source": "rtuitlab",
+            "source": "rtuitlab",
             "target": "andrew"
         },
         {
-            " source": "egor",
+            "source": "egor",
             "target": "ivan"
         }
     ],
@@ -43,7 +43,7 @@
             "url": "https://www.google.ru/"
         },
         "rtuitlab": {
-            "name": "RTU IT Lab",
+            "name": "RTUITLab",
             "icon": "./images/logo.png",
             "url": "https://rtuitlab.dev/"
         },
