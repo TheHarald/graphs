@@ -1,7 +1,13 @@
+import { generateJSONFile, addNode } from "./editor.js";
+
 const width = 900,
     height = 600;
 
 const nodeSize = 16
+
+let svg = d3.select('body').append('svg')
+    .attr('width', width)
+    .attr('height', height);
 
 
 async function load() {
@@ -15,18 +21,8 @@ async function load() {
 }
 
 
-function log() {
-    console.log(data)
-}
-
-
-
-let data
-load().then((value) => {
-
-    function logData() {
-        console.log(data)
-    }
+function createGraph(cValue) {
+    let value = JSON.parse(JSON.stringify(cValue))
     let links = value.links
     let nodes = value.nodes
 
@@ -35,9 +31,7 @@ load().then((value) => {
         link.target = nodes[link.target] || (nodes[link.target] = { name: link.target });
     });
 
-    let svg = d3.select('body').append('svg')
-        .attr('width', width)
-        .attr('height', height);
+
 
 
     let force = d3.layout.force()
@@ -94,7 +88,6 @@ load().then((value) => {
         .attr("x", 0)
         .attr("y", 0)
         .attr("fill", (d) => {
-            console.log(d)
             return `url(#cicrclePattern${d.index})`
         })
 
@@ -129,6 +122,10 @@ load().then((value) => {
             .duration(750)
             .attr("r", 2 * nodeSize)
 
+        d3.select(this).select("a").select("circle").transition()
+            .duration(750)
+            .attr("r", 2 * nodeSize)
+
 
         d3.select(this).select("defs").select("pattern").select("image").transition()
             .duration(750)
@@ -144,6 +141,9 @@ load().then((value) => {
             .duration(750)
             .attr("r", nodeSize)
 
+        d3.select(this).select("a").select("circle").transition()
+            .duration(750)
+            .attr("r", nodeSize)
 
         d3.select(this).select("defs").select("pattern").select("image").transition()
             .duration(750)
@@ -153,6 +153,38 @@ load().then((value) => {
             .duration(750)
             .attr("y", -3 * nodeSize)
     }
+
+}
+
+load().then((value) => {
+
+    createGraph(value)
+
+    const btn = document.querySelector('.delete-grapth')
+    document.querySelector('.generate').addEventListener('click', () => {
+        createGraph(value)
+    })
+    document.querySelector('.download').addEventListener('click', () => {
+        generateJSONFile(value)
+    })
+    document.querySelector('.add-node').addEventListener('click', () => {
+        addNode(value)
+    })
+
+    btn.addEventListener('click', () => {
+        const elements = (document.querySelectorAll('svg > *'))
+        elements.forEach((elem) => {
+            elem.remove()
+        })
+
+    })
+
+
+
+
+
+
+
 
 
 });

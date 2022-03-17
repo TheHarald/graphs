@@ -15,13 +15,19 @@
             <h1>Graph</h1>
         </header>
         <section>
-            <input id="node" type="text"><button onclick="()=>logData()">Добавить узел</button>
+            <input placeholder="id" id="node-id" type="text"><br>
+            <input placeholder="name" id="node-name" type="text"><br>
+            <input placeholder="icon" id="node-icon" type="text"><br>
+            <input placeholder="url" id="node-url" type="text"><br>
+            <button class="delete-grapth">Удалить граф</button>
+            <button class="generate">Отрисовать граф</button>
+            <button class="download">Скачать JSON</button>
+            <button class="add-node">Добавить узел</button>
+            <a id="downloadAnchorElem" style="display:none"></a>
         </section>
     </section>
     <script src='http://d3js.org/d3.v3.min.js'></script>
-    <script src="index.js"></script>
-    <script defer src="generator.js"></script>
-
+    <script type="module" src="index.js"></script>
 </body>
 
 </html>
