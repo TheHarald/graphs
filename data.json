@@ -24,12 +24,12 @@
     "nodes": {
         "andrew": {
             "name": "Андрей Петров",
-            "icon": "./images/one1.png",
+            "icon": "https://avatanplus.com/files/resources/original/583b70dd4e196158a830e088.png",
             "url": "https://www.google.ru/"
         },
         "anna": {
             "name": "Анна Иванова",
-            "icon": "./images/one2.png",
+            "icon": "https://shoonia.github.io/1x1/favicon.png",
             "url": "https://www.google.ru/"
         },
         "dima": {

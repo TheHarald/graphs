@@ -14,8 +14,19 @@ async function load() {
 
 }
 
+
+function log() {
+    console.log(data)
+}
+
+
+
 let data
 load().then((value) => {
+
+    function logData() {
+        console.log(data)
+    }
     let links = value.links
     let nodes = value.nodes
 
@@ -27,6 +38,7 @@ load().then((value) => {
     let svg = d3.select('body').append('svg')
         .attr('width', width)
         .attr('height', height);
+
 
     let force = d3.layout.force()
         .size([width, height])
@@ -57,13 +69,34 @@ load().then((value) => {
         .call(force.drag);
 
 
-    node.append("image")
-        .attr("xlink:href", function (d) { return d.icon; })
-        .attr("x", -nodeSize)
-        .attr("y", -nodeSize)
-        .attr("width", 2 * nodeSize)
-        .attr("height", 2 * nodeSize);
+    let defs = node.append("defs").attr("id", "imgdefs")
 
+    let cicrclePattern = defs.append("pattern")
+        .attr("id", (d) => {
+            return `cicrclePattern${d.index}`
+        })
+        .attr("height", 1)
+        .attr("width", 1)
+        .attr("x", "0")
+        .attr("y", "0")
+
+    cicrclePattern.append("image")
+        .attr("x", 0)
+        .attr("y", 0)
+        .attr("height", 2 * nodeSize)
+        // .attr("width", 2 * nodeSize)
+        .attr("xlink:href", function (d) { return d.icon; })
+
+    node.append("circle")
+        .attr("r", nodeSize)
+        .attr("cy", 0)
+        .attr("cx", 0)
+        .attr("x", 0)
+        .attr("y", 0)
+        .attr("fill", (d) => {
+            console.log(d)
+            return `url(#cicrclePattern${d.index})`
+        })
 
     node.append("text")
         .attr('class', 'text')
@@ -78,7 +111,6 @@ load().then((value) => {
         .attr("cx", 0)
         .attr("cy", 0)
         .attr("r", nodeSize)
-        .style("fill", "blue")
         .style("opacity", 0.0);
 
     function tick() {
@@ -93,12 +125,14 @@ load().then((value) => {
     }
 
     function mouseover() {
-        d3.select(this).select("image").transition()
+        d3.select(this).select("circle").transition()
             .duration(750)
-            .attr("width", 4 * nodeSize)
+            .attr("r", 2 * nodeSize)
+
+
+        d3.select(this).select("defs").select("pattern").select("image").transition()
+            .duration(750)
             .attr("height", 4 * nodeSize)
-            .attr("x", -2 * nodeSize)
-            .attr("y", -2 * nodeSize)
 
         d3.select(this).select("text").transition()
             .duration(750)
@@ -106,12 +140,14 @@ load().then((value) => {
     }
 
     function mouseout() {
-        d3.select(this).select("image").transition()
+        d3.select(this).select("circle").transition()
             .duration(750)
-            .attr("width", 2 * nodeSize)
+            .attr("r", nodeSize)
+
+
+        d3.select(this).select("defs").select("pattern").select("image").transition()
+            .duration(750)
             .attr("height", 2 * nodeSize)
-            .attr("x", -nodeSize)
-            .attr("y", -nodeSize)
 
         d3.select(this).select("text").transition()
             .duration(750)
