@@ -1,5 +1,7 @@
-function generateJSONFile(value) {
+import { createGraph } from './generator.js'
+const defaultIcon = '/images/default.jpg'
 
+function generateJSONFile(value) {
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(value));
     var dlAnchorElem = document.getElementById('downloadAnchorElem');
     dlAnchorElem.setAttribute("href", dataStr);
@@ -7,26 +9,87 @@ function generateJSONFile(value) {
     dlAnchorElem.click();
 }
 
+function deleteGraph() {
+    const elements = document.querySelectorAll('svg > *')
+    elements.forEach((elem) => {
+        elem.remove()
+    })
+}
+
 
 function addNode(newValue) {
-    // console.log(newValue.nodes)
 
     const id = document.getElementById('node-id')
     const name = document.getElementById('node-name')
     const icon = document.getElementById('node-icon')
     const url = document.getElementById('node-url')
-    // console.log(name.value)
+    console.log(icon.value)
     newValue.nodes[id.value] = {
         "name": name.value,
-        "icon": icon.value,
+        "icon": icon.value === '' ? defaultIcon : icon.value,
         "url": url.value
     }
-    // console.log(newValue.nodes)
+    deleteGraph()
+    loadSelet(newValue)
+    createGraph(newValue)
+
+    id.value = ''
+    name.value = ''
+    icon.value = ''
+    url.value = ''
 }
 
+
+
+function loadSelet(value) {
+
+    const sources = (document.querySelectorAll('#source > *'))
+    const targets = (document.querySelectorAll('#target > *'))
+    // console.log(elements)
+    sources.forEach((elem) => {
+        elem.remove()
+    })
+    targets.forEach((elem) => {
+        elem.remove()
+    })
+    const source = document.getElementById('source')
+    const target = document.getElementById('target')
+    let nodes = Object.keys(value.nodes)
+
+    nodes.map(option => {
+        let selection = document.createElement('option')
+        selection.textContent = value.nodes[option].name
+        selection.value = option
+        source.appendChild(selection)
+    })
+
+
+    nodes.map(option => {
+        let selection = document.createElement('option')
+        selection.textContent = value.nodes[option].name
+        selection.value = option
+        target.appendChild(selection)
+    })
+}
 
 function addLink(newValue) {
+    let nodes = Object.keys(newValue.nodes)
+    let source = document.getElementById('source').value
+    let target = document.getElementById('target').value
+
+    if (source === target) {
+        alert("Связь не может идти к самому себе")
+    } else {
+        newValue.links.push({
+            "source": source,
+            "target": target
+        })
+        deleteGraph()
+        createGraph(newValue)
+    }
+
+
 
 }
 
-export { generateJSONFile, addNode }
+export { generateJSONFile, addNode, deleteGraph, loadSelet, addLink }

@@ -14,18 +14,42 @@
         <header>
             <h1>Graph</h1>
         </header>
-        <section>
-            <input placeholder="id" id="node-id" type="text"><br>
-            <input placeholder="name" id="node-name" type="text"><br>
-            <input placeholder="icon" id="node-icon" type="text"><br>
-            <input placeholder="url" id="node-url" type="text"><br>
-            <button class="delete-grapth">Удалить граф</button>
-            <button class="generate">Отрисовать граф</button>
-            <button class="download">Скачать JSON</button>
-            <button class="add-node">Добавить узел</button>
-            <a id="downloadAnchorElem" style="display:none"></a>
+        <section class="form">
+            <section class="node-input">
+                <label for="node-id">Идентификатор узла</label>
+                <input placeholder="id" id="node-id" type="text">
+                <label for="node-name">Название узла</label>
+                <input placeholder="name" id="node-name" type="text">
+                <label for="node-icon">Иконка узла</label>
+                <input placeholder="icon" id="node-icon" type="text">
+                <label for="node-url">Ссылка узла</label>
+                <input placeholder="url" id="node-url" type="text">
+                <button id="add-node">Добавить узел</button>
+
+            </section>
+            <section class="link-input">
+                <label for="source">Откуда</label>
+                <select id="source">
+                </select>
+                <label for="target">Куда</label>
+                <select id="target">
+                </select>
+                <button id="add-link">Добавить связь</button>
+                <a id="downloadAnchorElem" style="display:none"></a>
+            </section>
+
+
+            <section class="buttons">
+                <button id="debug">Test</button>
+                <button id="delete-grapth">Удалить граф</button>
+                <button id="generate">Отрисовать граф</button>
+                <button id="download">Скачать JSON</button>
+            </section>
         </section>
+
+
     </section>
+    <svg></svg>
     <script src='http://d3js.org/d3.v3.min.js'></script>
     <script type="module" src="index.js"></script>
 </body>
