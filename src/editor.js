@@ -1,5 +1,5 @@
 import { createGraph } from './generator.js'
-const defaultIcon = '/images/default.jpg'
+const defaultIcon = 'https://is5-ssl.mzstatic.com/image/thumb/Purple115/v4/1a/09/49/1a0949f2-279e-cb45-ee85-fc1237fbf39a/source/512x512bb.jpg'
 
 function generateJSONFile(value) {
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(value));
