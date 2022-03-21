@@ -23,7 +23,7 @@ function addNode(newValue) {
     const name = document.getElementById('node-name')
     const icon = document.getElementById('node-icon')
     const url = document.getElementById('node-url')
-    console.log(icon.value)
+    // console.log(icon.value)
     newValue.nodes[id.value] = {
         "name": name.value,
         "icon": icon.value === '' ? defaultIcon : icon.value,

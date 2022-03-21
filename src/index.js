@@ -1,5 +1,5 @@
 import { generateJSONFile, addNode, deleteGraph, loadSelet, addLink } from "./editor.js";
-import { createGraph } from './generator.js'
+import { createGraph } from './generator.js';
 
 
 
@@ -55,8 +55,10 @@ document.querySelector('#add-link').addEventListener('click', () => {
 // });
 
 document.querySelector('#debug').addEventListener('click', () => {
-    const file = document.getElementById('json-file')
-    console.log(file)
+    // const file = document.getElementById('json-file')
+    // console.log(file)
+    // const div = d3.selectAll("body");
+    // console.log(div)
     // console.log(fetch(file[0]));
 
 
