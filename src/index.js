@@ -2,20 +2,6 @@ import { generateJSONFile, addNode, deleteGraph, loadSelet, addLink } from "./ed
 import { createGraph } from './generator.js';
 
 
-
-
-// async function load() {
-//     try {
-//         const response = await fetch('./data.json');
-//         return await response.json();
-//     } catch (e) {
-//         console.log(e)
-//     }
-
-// }
-
-// load().then((value) => {
-
 let value = {
     "links": [],
     "nodes": {}
@@ -55,8 +41,11 @@ document.querySelector('#add-link').addEventListener('click', () => {
 // });
 
 document.querySelector('#debug').addEventListener('click', () => {
-    // const file = document.getElementById('json-file')
-    // console.log(file)
+    // console.log(uuidv4())
+    const file = document.getElementById('json-file').files[0]
+    const formData = new FormData()
+    formData.append('file', file)
+    console.log(formData)
     // const div = d3.selectAll("body");
     // console.log(div)
     // console.log(fetch(file[0]));
@@ -81,4 +70,3 @@ async function fileToJSON() {
 
 btn.addEventListener('click', deleteGraph)
 
-// });

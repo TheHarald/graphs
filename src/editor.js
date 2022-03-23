@@ -16,15 +16,20 @@ function deleteGraph() {
     })
 }
 
+function uuidv4() {
+    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    );
+}
+
 
 function addNode(newValue) {
 
-    const id = document.getElementById('node-id')
     const name = document.getElementById('node-name')
     const icon = document.getElementById('node-icon')
     const url = document.getElementById('node-url')
     // console.log(icon.value)
-    newValue.nodes[id.value] = {
+    newValue.nodes[uuidv4()] = {
         "name": name.value,
         "icon": icon.value === '' ? defaultIcon : icon.value,
         "url": url.value
@@ -33,7 +38,6 @@ function addNode(newValue) {
     loadSelet(newValue)
     createGraph(newValue)
 
-    id.value = ''
     name.value = ''
     icon.value = ''
     url.value = ''
@@ -73,7 +77,6 @@ function loadSelet(value) {
 }
 
 function addLink(newValue) {
-    let nodes = Object.keys(newValue.nodes)
     let source = document.getElementById('source').value
     let target = document.getElementById('target').value
 
