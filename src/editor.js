@@ -1,6 +1,7 @@
 import { createGraph } from './generator.js'
 const defaultIcon = 'https://is5-ssl.mzstatic.com/image/thumb/Purple115/v4/1a/09/49/1a0949f2-279e-cb45-ee85-fc1237fbf39a/source/512x512bb.jpg'
 
+
 function generateJSONFile(value) {
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(value));
     var dlAnchorElem = document.getElementById('downloadAnchorElem');
@@ -22,26 +23,44 @@ function uuidv4() {
     );
 }
 
-
 function addNode(newValue) {
 
     const name = document.getElementById('node-name')
     const icon = document.getElementById('node-icon')
     const url = document.getElementById('node-url')
-    // console.log(icon.value)
-    newValue.nodes[uuidv4()] = {
-        "name": name.value,
-        "icon": icon.value === '' ? defaultIcon : icon.value,
-        "url": url.value
-    }
-    deleteGraph()
-    loadSelet(newValue)
-    createGraph(newValue)
+    if (name.value === '') {
+        alert('Название не должно быть пустым')
+    } else {
+        newValue.nodes[uuidv4()] = {
+            "name": name.value,
+            "icon": icon.value === '' ? defaultIcon : icon.value,
+            "url": url.value
+        }
+        deleteGraph()
+        loadSelet(newValue)
+        createGraph(newValue)
 
-    name.value = ''
-    icon.value = ''
-    url.value = ''
+        name.value = ''
+        icon.value = ''
+        url.value = ''
+    }
 }
+
+
+function fileToJSON() {
+    return new Promise((resolve, reject) => {
+        var reader = new FileReader();
+        var fileToRead = document.getElementById('json-file').files[0];
+        reader.onload = () => {
+
+            resolve(JSON.parse(reader.result))
+        };
+        reader.onerror = reject;
+        reader.readAsText(fileToRead);
+    })
+
+}
+
 
 
 
@@ -49,7 +68,6 @@ function loadSelet(value) {
 
     const sources = (document.querySelectorAll('#source > *'))
     const targets = (document.querySelectorAll('#target > *'))
-    // console.log(elements)
     sources.forEach((elem) => {
         elem.remove()
     })
@@ -95,4 +113,4 @@ function addLink(newValue) {
 
 }
 
-export { generateJSONFile, addNode, deleteGraph, loadSelet, addLink }
+export { generateJSONFile, addNode, deleteGraph, loadSelet, addLink, fileToJSON }
