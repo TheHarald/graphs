@@ -1,7 +1,7 @@
 // import * as d3 from "http://d3js.org/d3.v3.min.js";
 
-const width = 900,
-    height = 600;
+const width = window.screen.width - 200;
+const height = window.screen.height - 150;
 
 const nodeSize = 16
 

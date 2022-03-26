@@ -11,50 +11,51 @@
 </head>
 
 <body>
-    <section>
-        <header>
-            <h1>Graph</h1>
-        </header>
-        <section class="form">
-            <section class="node-input">
-                <label for="node-name">Название узла</label>
-                <input placeholder="name" id="node-name" type="text">
-                <label for="node-icon">Ссылка на картинку</label>
-                <input disabled placeholder="icon" id="node-icon" type="text">
-                <label for="node-url">Ссылка узла</label>
-                <input placeholder="url" id="node-url" type="text">
-                <button id="add-node">Добавить узел</button>
+    <section id="app">
 
+        <section id="editor-field">
+            <header>
+                <h1>Graph</h1>
+            </header>
+            <section class="form">
+                <section class="node-input">
+                    <label for="node-name">Название узла</label>
+                    <input placeholder="name" id="node-name" type="text">
+                    <label for="node-icon">Ссылка на картинку</label>
+                    <input disabled placeholder="icon" id="node-icon" type="text">
+                    <label for="node-url">Ссылка узла</label>
+                    <input placeholder="url" id="node-url" type="text">
+                    <button id="add-node">Добавить узел</button>
+
+                </section>
+                <section class="link-input">
+                    <label for="source">Откуда</label>
+                    <select id="source">
+                    </select>
+                    <label for="target">Куда</label>
+                    <select id="target">
+                    </select>
+                    <button id="add-link">Добавить связь</button>
+                    <a id="downloadAnchorElem" style="display:none"></a>
+                </section>
+
+                <label id="drop-area" for="json-file">
+                    <i class="material-icons">attach_file</i>
+                    <input id="json-file" accept=".json" type="file">
+                    <span class="title">Загрузить файл .json</span>
+                </label>
+                <section class="buttons">
+                    <button id="delete-grapth">Удалить граф</button>
+                    <button id="generate">Отрисовать граф</button>
+                    <button id="download">Скачать JSON <i class="material-icons">file_download</i></button>
+                </section>
             </section>
-            <section class="link-input">
-                <label for="source">Откуда</label>
-                <select id="source">
-                </select>
-                <label for="target">Куда</label>
-                <select id="target">
-                </select>
-                <button id="add-link">Добавить связь</button>
-                <a id="downloadAnchorElem" style="display:none"></a>
-            </section>
-
-            <label id="drop-area" for="json-file">
-                <i class="material-icons">attach_file</i>
-                <input id="json-file" accept=".json" type="file">
-                <span class="title">Добавить файл</span>
-            </label>
-            <section class="buttons">
 
 
-                <button id="debug">Test</button>
-                <button id="delete-grapth">Удалить граф</button>
-                <button id="generate">Отрисовать граф</button>
-                <button id="download">Скачать JSON</button>
-            </section>
         </section>
-
-
+        <svg id="graph-field"></svg>
     </section>
-    <svg></svg>
+
     <script defer src='https://d3js.org/d3.v3.min.js'></script>
     <script defer type="module" src="index.js"></script>
 </body>

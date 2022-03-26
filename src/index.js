@@ -9,7 +9,7 @@ let value = {
 
 createGraph(value)
 loadSelet(value)
-const btn = document.querySelector('#delete-grapth')
+document.querySelector('#delete-grapth').addEventListener('click', deleteGraph)
 document.querySelector('#generate').addEventListener('click', () => {
     createGraph(value)
 })
@@ -33,5 +33,4 @@ document.getElementById('json-file').addEventListener('change', () => {
     })
 
 })
-btn.addEventListener('click', deleteGraph)
 
